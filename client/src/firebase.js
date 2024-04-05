@@ -6,6 +6,9 @@
 // Your web app's Firebase configuration
 import { initializeApp } from 'firebase/app';
 
+// import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+
 const firebaseConfig = {
   apiKey: 'AIzaSyB1ktAHSjRZW2WFl2aslMR7iVyE1McYkdY',
   authDomain: 'my-blog-a4550.firebaseapp.com',
@@ -13,6 +16,7 @@ const firebaseConfig = {
   storageBucket: 'my-blog-a4550.appspot.com',
   messagingSenderId: '699397991367',
   appId: '1:699397991367:web:88ff565ef72a182d6b87e2',
+  
 };
 
 // Initialize Firebase

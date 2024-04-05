@@ -23,7 +23,7 @@ export default function DashboardComp() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('/api/user/getusers?limit=5');
+        const res = await fetch('http://localhost:5000/api/auth/api/user/getusers?limit=5');
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -36,7 +36,7 @@ export default function DashboardComp() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch('/api/post/getposts?limit=5');
+        const res = await fetch('http://localhost:5000/api/post/getposts?limit=5');
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);

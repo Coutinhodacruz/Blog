@@ -2,6 +2,9 @@ import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -34,6 +37,8 @@ export const signup = async (req, res, next) => {
 };
 
 export const signin = async (req, res, next) => {
+
+  const JWT_SECRET = '823a7dd9c2af7b0e78742733953085234ac806ed28b36147dfa69fa91ceffaeaf9e8875b9e7c3fae3e1aaabd6079aa4ce1bcdf7850e2e5ee5cf330bdb9509f00'
   const { email, password } = req.body;
 
   if (!email || !password || email === '' || password === '') {
@@ -51,7 +56,7 @@ export const signin = async (req, res, next) => {
     }
     const token = jwt.sign(
       { id: validUser._id, isAdmin: validUser.isAdmin },
-      process.env.JWT_SECRET
+      JWT_SECRET
     );
 
     const { password: pass, ...rest } = validUser._doc;
@@ -68,13 +73,14 @@ export const signin = async (req, res, next) => {
 };
 
 export const google = async (req, res, next) => {
+  const JWT_SECRET = '823a7dd9c2af7b0e78742733953085234ac806ed28b36147dfa69fa91ceffaeaf9e8875b9e7c3fae3e1aaabd6079aa4ce1bcdf7850e2e5ee5cf330bdb9509f00'
   const { email, name, googlePhotoUrl } = req.body;
   try {
     const user = await User.findOne({ email });
     if (user) {
       const token = jwt.sign(
         { id: user._id, isAdmin: user.isAdmin },
-        process.env.JWT_SECRET
+        JWT_SECRET
       );
       const { password, ...rest } = user._doc;
       res
@@ -99,7 +105,7 @@ export const google = async (req, res, next) => {
       await newUser.save();
       const token = jwt.sign(
         { id: newUser._id, isAdmin: newUser.isAdmin },
-        process.env.JWT_SECRET
+        JWT_SECRET
       );
       const { password, ...rest } = newUser._doc;
       res

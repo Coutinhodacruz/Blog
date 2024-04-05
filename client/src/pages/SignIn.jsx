@@ -24,11 +24,12 @@ export default function SignIn() {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch('/api/auth/signin', {
+      const res = await fetch('http://localhost:5000/api/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      console.log("response --> ", res)
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message));
@@ -83,16 +84,16 @@ export default function SignIn() {
             <Button
               gradientDuoTone='purpleToPink'
               type='submit'
-              disabled={loading}
+              // disabled={loading}
             >
-              {loading ? (
+              {/* {loading ? (
                 <>
                   <Spinner size='sm' />
                   <span className='pl-3'>Loading...</span>
                 </>
-              ) : (
-                'Sign In'
-              )}
+              ) : ( */}
+                Sign In
+              {/* )} */}
             </Button>
             <OAuth />
           </form>

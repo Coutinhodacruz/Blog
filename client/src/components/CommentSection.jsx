@@ -99,7 +99,7 @@ export default function CommentSection({ postId }) {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`/api/comment/deleteComment/${commentId}`, {
+      const res = await fetch(`http://localhost:5000/api/comment/deleteComment/${commentId}`, {
         method: 'DELETE',
       });
       if (res.ok) {

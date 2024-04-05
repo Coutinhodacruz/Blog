@@ -5,12 +5,12 @@ import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import postRoutes from './routes/post.route.js';
 import commentRoutes from './routes/comment.route.js';
+import cors from 'cors'; // Change to default import syntax
+
 import cookieParser from 'cookie-parser';
 import path from 'path';
-// const cors = require('cors');
 
 dotenv.config();
-// app.use(cors());
 
 const uri = 'mongodb://127.0.0.1:27017/Mern-Blog';
 
@@ -29,9 +29,13 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+// Enable CORS middleware
+app.use(cors({
+  origin: 'http://localhost:5173', // Replace with your frontend's domain
+}));
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000!');
+app.listen(5000, () => {
+  console.log('Server is running on port 5000!');
 });
 
 app.use('/api/user', userRoutes);
