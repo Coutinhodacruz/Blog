@@ -61,18 +61,21 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+    
       const res = await fetch('http://localhost:5000/api/post/create', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json',        
         },
         body: JSON.stringify(formData),
       });
+      console.log("this is the data -->", formData)
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
         return;
       }
+      console.log("k,jnf -->", data)
 
       if (res.ok) {
         setPublishError(null);

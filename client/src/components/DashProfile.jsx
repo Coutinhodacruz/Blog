@@ -55,11 +55,12 @@ export default function DashProfile() {
     //     match /{allPaths=**} {
     //       allow read;
     //       allow write: if
-    //       request.resource.size < 2 * 1024 * 1024 &&
-    //       request.resource.contentType.matches('image/.*')
+    //         request.resource.size < 5 * 1024 * 1024 &&
+    //         request.resource.contentType.matches('image/.*');
     //     }
     //   }
     // }
+    
     setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
@@ -76,7 +77,7 @@ export default function DashProfile() {
       },
       (error) => {
         setImageFileUploadError(
-          'Could not upload image (File must be less than 2MB)'
+          'Could not upload image (File must be less than 5MB)'
         );
         setImageFileUploadProgress(null);
         setImageFile(null);
@@ -118,6 +119,7 @@ export default function DashProfile() {
         },
         body: JSON.stringify(formData),
       });
+      console.log("this is the user id -->", currentUser._id);
       const data = await res.json();
       if (!res.ok) {
         dispatch(updateFailure(data.message));
@@ -131,6 +133,8 @@ export default function DashProfile() {
       setUpdateUserError(error.message);
     }
   };
+
+  
   const handleDeleteUser = async () => {
     setShowModal(false);
     try {
