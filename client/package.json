@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.0.1",
+    "@reduxjs/toolkit": "^2.5.0",
     "@testing-library/user-event": "14.5.2",
     "firebase": "^10.7.1",
     "flowbite-react": "^0.7.0",
